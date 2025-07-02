@@ -108,47 +108,47 @@ export const addShow = async (req, res) =>{
 
 // api to get all shows from the data base
 
-// export const getShows = async ( req, res ) =>{
-//     try{
-//         const shows = await Show.find({showDateTime: {$gte: new Date()}}).populate('movie').sort({ showDateTime: 1});
+export const getShows = async ( req, res ) =>{
+    try{
+        const shows = await Show.find({showDateTime: {$gte: new Date()}}).populate('movie').sort({ showDateTime: 1});
 
-//         // filter unique shows
-//         const uniqueShows = new Set(shows.map(show => show.movie))
+        // filter unique shows
+        const uniqueShows = new Set(shows.map(show => show.movie))
 
-//         res.json({success: true, shows: Array.from(uniqueShows)})
+        res.json({success: true, shows: Array.from(uniqueShows)})
 
 
 
-//     }catch(error){
+    }catch(error){
 
-//         console.error(error);
-//         res.json({success: false, message: error.message});
+        console.error(error);
+        res.json({success: false, message: error.message});
 
-//     }
-// };
-
-export const getShows = async (req, res) => {
-  try {
-    const shows = await Show.find({ showDateTime: { $gte: new Date() } })
-      .populate('movie')
-      .sort({ showDateTime: 1 });
-
-    const movieMap = new Map();
-
-    for (const show of shows) {
-      const movieId = show.movie._id.toString();
-      if (!movieMap.has(movieId)) {
-        movieMap.set(movieId, show.movie);
-      }
     }
-
-    res.json({ success: true, shows: Array.from(movieMap.values()) });
-
-  } catch (error) {
-    console.error(error);
-    res.json({ success: false, message: error.message });
-  }
 };
+
+// export const getShows = async (req, res) => {
+//   try {
+//     const shows = await Show.find({ showDateTime: { $gte: new Date() } })
+//       .populate('movie')
+//       .sort({ showDateTime: 1 });
+
+//     const movieMap = new Map();
+
+//     for (const show of shows) {
+//       const movieId = show.movie._id.toString();
+//       if (!movieMap.has(movieId)) {
+//         movieMap.set(movieId, show.movie);
+//       }
+//     }
+
+//     res.json({ success: true, shows: Array.from(movieMap.values()) });
+
+//   } catch (error) {
+//     console.error(error);
+//     res.json({ success: false, message: error.message });
+//   }
+// };
 
 
 
