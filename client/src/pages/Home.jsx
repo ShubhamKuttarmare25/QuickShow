@@ -1,14 +1,14 @@
 import React from 'react'
 import HeroSection from '../components/HeroSection'
 import FeaturedSection from '../components/FeaturedSection'
-import TrailerSection from '../components/TrailerSection'
+import TrailersSection from '../components/TrailersSection'
 
 const Home = () => {
   return (
     <div>
         <HeroSection />
         <FeaturedSection />
-        <TrailerSection />
+        <TrailersSection />
     </div>
   )
 }
