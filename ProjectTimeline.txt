@@ -1,1 +1,3 @@
 QuickShow Project Timeline:
+
+1. Used inggest for background activities like sending emails to users before movie time, or sending mail whenever a new movies is released
