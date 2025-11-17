@@ -5,5 +5,9 @@ QuickShow Project Timeline:
 
 
 Timeline:
+Date : 16 Nov
 48 mins: Just before cleark integration
 59 mins not able to sign up due to mobile number not allowed 
+
+Date: 17 nov 
+1:33 mins : write a timeFormat funtion, getting no error till now
