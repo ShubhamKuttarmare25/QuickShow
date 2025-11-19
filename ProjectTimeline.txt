@@ -11,3 +11,9 @@ Date : 16 Nov
 
 Date: 17 nov 
 1:33 mins : write a timeFormat funtion, getting no error till now
+
+
+Date: 19 Nov
+2 : 09 mins: movie details page added 
+-errors: 1. blur circle positioning no properly done in trailers section left = '-100px' and right='-100px' not working -> no proper alignment of the blurCircle
+
