@@ -5,5 +5,17 @@ QuickShow Project Timeline:
 
 
 Timeline:
+Date : 16 Nov
 48 mins: Just before cleark integration
 59 mins not able to sign up due to mobile number not allowed 
+
+Date: 17 nov 
+1:33 mins : write a timeFormat funtion, getting no error till now
+
+
+Date: 19 Nov
+2 : 09 mins: movie details page added 
+-errors: 1. blur circle positioning no properly done in trailers section left = '-100px' and right='-100px' not working -> no proper alignment of the blurCircle
+Merged implement clerk autentication branch
+create new one while continue from here
+
