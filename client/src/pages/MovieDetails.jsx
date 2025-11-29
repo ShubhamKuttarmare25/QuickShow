@@ -38,7 +38,6 @@ const MovieDetails = () => {
             {show.movie.overview}
           </p>
           <p>{timeFormat(show.movie.runtime)} • {show.movie.genres.map(genre => genre.name).join(", ")} • {show.movie.release_date.split("-")[0]}
-
           </p>
 
           <div className='flex items-center flex-wrap gap-4 mt-4'>
