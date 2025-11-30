@@ -19,3 +19,7 @@ Date: 19 Nov
 Merged implement clerk autentication branch
 create new one while continue from here
 
+Date 30/ Nov
+5 hrs 
+import User from "../models/User.js" -> getting error in importing this in index.js
+continue in this branch feat/backend-integration
