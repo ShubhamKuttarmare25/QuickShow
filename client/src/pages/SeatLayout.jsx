@@ -2,7 +2,7 @@ import React from 'react'
 
 const SeatLayout = () => {
   return (
-    <div></div>
+    <div>SeatLayout</div>
   )
 }
 
