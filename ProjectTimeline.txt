@@ -23,3 +23,10 @@ Date 30/ Nov
 5 hrs 
 import User from "../models/User.js" -> getting error in importing this in index.js
 continue in this branch feat/backend-integration
+
+Date 01/ Dec
+6 hrs 
+Create three enpoints testing is pending 
+continue in the same branch feat/api-creation
+backend deployed on vercel with main branch 
+need to merge this branch to deploy the changes 
