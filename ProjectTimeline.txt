@@ -30,3 +30,12 @@ Create three enpoints testing is pending
 continue in the same branch feat/api-creation
 backend deployed on vercel with main branch 
 need to merge this branch to deploy the changes 
+
+
+Date 02/ Dec
+7 hrs
+Crate all the apis
+merged branch api-creation to main
+to do:
+api integration with FE
+Create a new branch api-integration
