@@ -209,5 +209,44 @@ const sendShowRemiders = inngest.createFunction(
     }
 )
 
+//inngest function to send mail to user when new movie is added
 
-export const functions = [syncUserCreation, syncUserDeletion, syncUserUpdation, releaseSeatsAndDeleteBooking, sendBookingConfirmationEmail, sendShowRemiders];
+const sendNewShowNotifications = inngest.createFunction(
+    { id: "send-new-show-notifications"},
+    { event: "app/show.added"},
+    async ({ event })=>{
+        const { movieTitle, moiveId} = event.data;
+
+        const users = await User.find({});
+
+        for(const user of users){
+            const userEmail = user.email;
+            const userName = user.name;
+            const subject = `New Movie Alert: "${movieTitle}" is now available!`;
+            const body = `<div style="font-family: Arial, sans-serif; padding: 20px;">
+            <h2>Hello ${userName},</h2>
+            <p>We're excited to announce that the movie:</p>
+            <h3 style="color: #F84565;">"${movieTitle}"</h3>
+            <p>is now available for booking. Don't miss out!</p>
+            <br/>
+            <p>Enjoy the show!<br/>QuickShow Team</p>
+            </div>`;
+
+            await sendEmail(
+            {
+                to: userEmail,
+                subject,
+                body
+            }
+        )
+        }
+
+        return { message: "New show notifications sent to all users" };
+
+        
+
+    }
+)
+
+
+export const functions = [syncUserCreation, syncUserDeletion, syncUserUpdation, releaseSeatsAndDeleteBooking, sendBookingConfirmationEmail, sendShowRemiders, sendNewShowNotifications];
