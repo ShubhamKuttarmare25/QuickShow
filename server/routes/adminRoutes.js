@@ -1,10 +1,10 @@
 import express from "express";
 import { getDashboardData, getAllShows, getAllBookings, isAdmin } from "../controllers/adminController.js";
-import { protectAdmin } from "../middleware/auth.js";
+import { protectAdmin, checkAdmin } from "../middleware/auth.js";
 
 const adminRouter = express.Router();
 
-adminRouter.get("/is-admin", protectAdmin, isAdmin);
+adminRouter.get("/is-admin", checkAdmin, isAdmin);
 adminRouter.get("/dashboard", protectAdmin, getDashboardData);
 adminRouter.get("/all-shows", protectAdmin, getAllShows);
 adminRouter.get("/all-bookings", protectAdmin, getAllBookings);
