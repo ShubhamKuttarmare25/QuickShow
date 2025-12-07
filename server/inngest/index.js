@@ -209,42 +209,60 @@ const sendShowRemiders = inngest.createFunction(
     }
 )
 
-//inngest function to send mail to user when new movie is added
-
+// Inngest function to send mail to user when new movie is added
 const sendNewShowNotifications = inngest.createFunction(
-    { id: "send-new-show-notifications"},
-    { event: "app/show.added"},
-    async ({ event })=>{
-        const { movieTitle} = event.data;
+    { id: "send-new-show-notifications" },
+    { event: "app/show.added" },
+    async ({ event, step }) => {
+        const { movieTitle } = event.data;
 
-        const users = await User.find({});
+        console.log(`New show notification triggered for movie: "${movieTitle}"`);
 
-        for(const user of users){
-            const userEmail = user.email;
-            const userName = user.name;
-            const subject = `New Movie Alert: "${movieTitle}" is now available!`;
-            const body = `<div style="font-family: Arial, sans-serif; padding: 20px;">
-            <h2>Hello ${userName},</h2>
-            <p>We're excited to announce that the movie:</p>
-            <h3 style="color: #F84565;">"${movieTitle}"</h3>
-            <p>is now available for booking. Don't miss out!</p>
-            <br/>
-            <p>Enjoy the show!<br/>QuickShow Team</p>
-            </div>`;
+        // Fetch all users
+        const users = await step.run('fetch-all-users', async () => {
+            console.log('Fetching all users for new show notification...');
+            const allUsers = await User.find({}).select('name email');
+            console.log(`Found ${allUsers.length} users to notify`);
+            return allUsers.map(user => ({
+                email: user.email,
+                name: user.name
+            }));
+        });
 
-            await sendEmail(
-            {
-                to: userEmail,
-                subject,
-                body
-            }
-        )
+        if (users.length === 0) {
+            console.log('No users found to notify');
+            return { sent: 0, failed: 0, message: "No users to notify" };
         }
 
-        return { message: "New show notifications sent to all users" };
+        // Send emails to all users
+        const results = await step.run('send-all-notifications', async () => {
+            console.log(`Sending new show notifications to ${users.length} users...`);
+            
+            return await Promise.allSettled(
+                users.map(user => {
+                    console.log(`Sending notification to ${user.email}`);
+                    return sendEmail({
+                        to: user.email,
+                        subject: `New Movie Alert: "${movieTitle}" is now available!`,
+                        body: `<div style="font-family: Arial, sans-serif; padding: 20px;">
+                            <h2>Hello ${user.name},</h2>
+                            <p>We're excited to announce that the movie:</p>
+                            <h3 style="color: #F84565;">"${movieTitle}"</h3>
+                            <p>is now available for booking. Don't miss out!</p>
+                            <br/>
+                            <p>Enjoy the show!<br/>QuickShow Team</p>
+                        </div>`
+                    });
+                })
+            );
+        });
 
+        const sent = results.filter(r => r.status === 'fulfilled').length;
+        const failed = results.length - sent;
         
-
+        console.log(`New show notifications complete: ${sent} sent, ${failed} failed`);
+        
+        return { sent, failed, message: `Sent ${sent} notifications for "${movieTitle}"` };
     }
 )
 
