@@ -13,14 +13,18 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendEmail = async ({ to, subject, body }) => {
-    const response = await transporter.sendMail({
-        from: process.env.SMTP_USER,
-        to,
-        subject,
-        html: body, 
-    })
-
-    return response;
+    try {
+        const response = await transporter.sendMail({
+            from: process.env.SMTP_USER,
+            to,
+            subject,
+            html: body, 
+        });
+        return response;
+    } catch (error) {
+        console.error(`Failed to send email to ${to}:`, error.message);
+        throw error; // Re-throw so Inngest can retry
+    }
 }
 
 export default sendEmail;
