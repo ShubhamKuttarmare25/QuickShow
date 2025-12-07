@@ -66,6 +66,11 @@ const releaseSeatsAndDeleteBooking = inngest.createFunction(
 
             const booking = await Booking.findById(bookingId);
 
+            // If booking doesn't exist (already deleted or paid), skip
+            if (!booking) {
+                return;
+            }
+
             //if payment is not made, release the seats and delete the booking
             if(!booking.isPaid){
                 //delete the booking and release the seats
@@ -92,6 +97,11 @@ const sendBookingConfirmationEmail = inngest.createFunction(
         const {bookingId} = event.data;
 
         const booking = await Booking.findById(bookingId).populate({path: 'show', populate: {path: 'movie', model: 'Movie'}}).populate('user');
+
+        if (!booking || !booking.user) {
+            console.error(`Booking or user not found for bookingId: ${bookingId}`);
+            return;
+        }
 
         await sendEmail({ 
             to: booking.user.email,
