@@ -39,7 +39,7 @@ Admin users can add movies and manage bookings. Authentication and seat locking 
 
 ## 📁 Folder Structure
 ```
-movie-booking-app/
+QuickShow/
 │
 ├── backend/
 │ ├── config/
