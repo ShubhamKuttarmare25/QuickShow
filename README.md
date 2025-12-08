@@ -92,8 +92,8 @@ VITE_BACKEND_URL=http://localhost:5000
 
 ### 1️⃣ Clone the Repository
 ```sh
-git clone https://github.com/your-username/movie-ticket-booking-app.git
-cd movie-ticket-booking-app
+git clone https://github.com/ShubhamKuttarmare25/QuickShow.git
+cd quickshow
 ```
 
 ### 2️⃣ Install Dependencies
