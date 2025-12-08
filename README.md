@@ -1,7 +1,7 @@
 # 🎬QuickShow - Movie Ticket Booking App
 [🔴🔴LIVE](https://quickshow-seven-amber.vercel.app/)
 
-A full-stack MERN (MongoDB, Express, React, Node.js) movie ticket booking system inspired by the GreatStack YouTube tutorial.  
+A full-stack MERN (MongoDB, Express, React, Node.js) movie ticket booking system.  
 Users can browse movies, view seat layouts, book tickets, and manage bookings.  
 Admin users can add movies and manage bookings. Authentication and seat locking are also implemented.
 
@@ -14,7 +14,7 @@ Admin users can add movies and manage bookings. Authentication and seat locking 
 - View available movies and their details
 - Select seats and book tickets
 - View booking history
-- Automatic email notifications (optional)
+- Automatic email notifications
 - Temporary seat hold during booking to avoid duplicate reservations
 
 ### 🛠 Admin Features
@@ -33,7 +33,7 @@ Admin users can add movies and manage bookings. Authentication and seat locking 
 | Database | MongoDB |
 | Authentication | Clerk |
 | Background Jobs | Inngest (Seat unlock + emails) |
-| Deployment | Vercel / Render / MongoDB Atlas (optional) |
+| Deployment | Vercel / Render / MongoDB Atlas |
 
 ---
 
